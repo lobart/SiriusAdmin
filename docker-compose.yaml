@@ -5,7 +5,7 @@ services:
     build: ./src/smartcity/
     restart: always
     environment:
-      DB_HOST: "10.17.40.92"
+      DB_HOST: "10.25.61.12"
       DB_NAME: "smc"
       DB_USER: "smc"
       DB_PASSWORD: "wUqbfGC6wCRORJD3bhYHQ9cfg4ACDNH5"

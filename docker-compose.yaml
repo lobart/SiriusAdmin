@@ -21,6 +21,6 @@ services:
     depends_on:
       - web
     ports:
-      - "80:30004"
+      - "30004:80"
 volumes:
   static_content:

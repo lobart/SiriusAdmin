@@ -56,7 +56,7 @@ ROOT_URLCONF = 'SmartCityAdmin.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'src/smartcity/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {

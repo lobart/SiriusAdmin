@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-vl=6r*c^sw#)hx241i$&z$5)yu!7&*@i)(b$*@8ykw+k7vc(ra
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['smart.parksirius.ru']
 
 
 # Application definition

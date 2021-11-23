@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment                                            # 1
+metadata:
+  name: sc-admin-deployment
+spec:
+  selector:
+    matchLabels:
+      app: admin
+  replicas: 1
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate                                   # 3
+    rollingUpdate:
+      maxUnavailable: 1                                   # 4
+      maxSurge: 1
+  template:                                               # 6
+    metadata:
+      labels:
+        app: admin
+    spec:
+      containers:
+        - image: siriusadmin_web # 4
+          imagePullPolicy: IfNotPresent
+          name: sc-admin-pod
+          env:
+          - name : "DB_HOST"
+            values : "10.25.61.12"
+          - name: "DB_NAME"
+            values: "smc"
+          - name: "DB_USER"
+            values: "smc"
+          - name: "DB_PASSWORD"
+            values: "wUqbfGC6wCRORJD3bhYHQ9cfg4ACDNH5"
+          - name: "LOGS"
+            value: "./temp"
+          ports:
+            - containerPort: 8000

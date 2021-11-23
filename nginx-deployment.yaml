@@ -31,5 +31,5 @@ spec:
             type: Directory
         - name: nginx-config
           hostPath:
-            path: ./src/nginx
+            path: src/nginx
             type: Directory

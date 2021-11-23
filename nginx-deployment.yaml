@@ -96,7 +96,7 @@ spec:
         - containerPort: 80
         volumeMounts:
           - mountPath: /etc/nginx
-            name: nginx-config
+            name: nginx-conf
           - mountPath: /ssl
             name: keys
       imagePullSecrets:

@@ -23,14 +23,14 @@ spec:
           imagePullPolicy: IfNotPresent
           name: sc-admin-pod
           env:
-          - name : "DB_HOST"
-            values : "10.25.61.12"
+          - name: "DB_HOST"
+            value: "10.25.61.12"
           - name: "DB_NAME"
-            values: "smc"
+            value: "smc"
           - name: "DB_USER"
-            values: "smc"
+            value: "smc"
           - name: "DB_PASSWORD"
-            values: "wUqbfGC6wCRORJD3bhYHQ9cfg4ACDNH5"
+            value: "wUqbfGC6wCRORJD3bhYHQ9cfg4ACDNH5"
           - name: "LOGS"
             value: "./temp"
           ports:

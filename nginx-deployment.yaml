@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.19.2
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /etc/nginx/
+            name: nginx-config
+          - mountPath: /ssl
+            name: keys
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: keys
+          hostPath:
+            path: /home/letsencrypt/.acme.sh/smart.parksirius.ru
+            type: Directory
+        - name: nginx-config
+          hostPath:
+            path: ./src/nginx
+            type: Directory

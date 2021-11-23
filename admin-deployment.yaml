@@ -35,3 +35,4 @@ spec:
             value: "./temp"
           ports:
             - containerPort: 8000
+

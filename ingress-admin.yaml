@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: main-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/secure-backends: "true"
+spec:
+  tls:
+  - hosts:
+    - smart.parksirius.ru
+    secretName: smc-tls-secret
+  rules:
+  -  host: smart.parksirius.ru
+     http:
+        paths:
+          - pathType: Prefix
+            path: /admin
+            backend:
+              service:
+                name: sc-admin-service
+                port: 
+                  number: 8000
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 30005
+
+

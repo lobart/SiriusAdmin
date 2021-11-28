@@ -5,11 +5,11 @@ from django.utils.html import mark_safe
 import logging
 logger = logging.getLogger(__name__)
 
+
 class Cameras(models.Model):
     id = models.IntegerField(primary_key=True)
     url = models.CharField(_('url'), max_length=255)
     description = models.CharField(_('description'), max_length=255)
-
 
     class Meta:
         verbose_name = _('cameras')

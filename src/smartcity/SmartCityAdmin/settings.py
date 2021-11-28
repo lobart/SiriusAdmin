@@ -138,7 +138,7 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False,
         },
-        'smartcity.faces.models': {
+        '': {
             'handlers': ['console'],
             'level': 'INFO',
             'propagate': False,

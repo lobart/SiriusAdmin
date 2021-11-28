@@ -5,6 +5,6 @@ WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 COPY . /code/
-RUN python manage.py collectstatic -y
+RUN python manage.py collectstatic
 CMD python manage.py runserver 0.0.0.0:8000
 EXPOSE 8000

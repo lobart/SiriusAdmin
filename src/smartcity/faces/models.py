@@ -29,14 +29,16 @@ class Profiles(models.Model):
     drawing_data = models.BinaryField(null=True, editable=True)
 
     def image_tag(self):
-        data = bytes(self.drawing_data)
-        name = '{id}'.format(id=self.employee_id) + '.jpg'
-        filename = str(settings.STATIC_ROOT) + name
-        logger.info(filename)
-        with open(filename, 'wb') as f:
-            f.write(data)
-            logger.info('File %s is writen' % filename)
-        return mark_safe('<img src="%s" width="150" height="150" />' % (filename))
+        if self.drawing_data != None:
+            data = bytes(self.drawing_data)
+            name = '{id}'.format(id=self.employee_id) + '.jpg'
+            filename = str(settings.STATIC_ROOT) + name
+            logger.info(filename)
+            with open(filename, 'wb') as f:
+                f.write(data)
+                logger.info('File %s is writen' % filename)
+            return mark_safe('<img src="%s" width="150" height="150" />' % (filename))
+        return mark_safe('<div> %s </div>'%'No image')
 
     image_tag.short_description = 'Image'
 

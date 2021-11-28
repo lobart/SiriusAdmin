@@ -18,7 +18,7 @@ class Profiles(models.Model):
     id = models.IntegerField(primary_key=True)
     employee_id = models.IntegerField(unique=True)
     full_name = models.TextField()
-    drawing_data = models.BinaryField(null=True)
+    drawing_data = models.BinaryField(null=True, editable=True)
 
     class Meta:
         verbose_name = _('profiles')

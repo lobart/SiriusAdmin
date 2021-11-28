@@ -29,7 +29,7 @@ class Profiles(models.Model):
     drawing_data = models.BinaryField(null=True, editable=True)
 
     def image_tag(self):
-        data = bytes(self.drawing_data.get_default())
+        data = bytes(self.drawing_data)
         name = '{id}'.format(id=self.employee_id) + '.jpg'
         filename = settings.STATIC_ROOT + name
         logger.info(filename)

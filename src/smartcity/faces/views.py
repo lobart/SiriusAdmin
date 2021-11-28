@@ -1,9 +1,5 @@
-from django.shortcuts import render
-from django.db import models
 from django.shortcuts import render, redirect
 from .forms import UploadImageForm
-from .models import Profiles
-import base64
 
 
 def upload_file(request):

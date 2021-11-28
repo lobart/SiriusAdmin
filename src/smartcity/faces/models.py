@@ -26,6 +26,7 @@ class Profiles(models.Model):
         filename = settings.STATIC + name
         with open(filename, 'wb') as f:
             f.write(data)
+            print('File %s is writen'%filename)
         from django.utils.html import escape
         return u'<img src="%s" />' % escape(filename)
 

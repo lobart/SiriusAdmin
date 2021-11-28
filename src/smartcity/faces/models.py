@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from django.utils.html import mark_safe
+
 
 class Cameras(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -26,12 +28,10 @@ class Profiles(models.Model):
         filename = settings.STATIC + name
         with open(filename, 'wb') as f:
             f.write(data)
-            print('File %s is writen'%filename)
-        from django.utils.html import escape
-        return u'<img src="%s" />' % escape(filename)
+            print('File %s is writen' % filename)
+        return mark_safe('<img src="%s" width="150" height="150" />' % (filename))
 
     image_tag.short_description = 'Image'
-    image_tag.allow_tags = True
 
     class Meta:
         verbose_name = _('profiles')

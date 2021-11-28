@@ -31,7 +31,7 @@ class Profiles(models.Model):
     def image_tag(self):
         data = bytes(self.drawing_data)
         name = '{id}'.format(id=self.employee_id) + '.jpg'
-        filename = settings.STATIC_ROOT + name
+        filename = str(settings.STATIC_ROOT) + name
         logger.info(filename)
         with open(filename, 'wb') as f:
             f.write(data)

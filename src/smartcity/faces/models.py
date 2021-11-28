@@ -23,7 +23,7 @@ class Profiles(models.Model):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         name = '{id}'.format(id=self.employee_id) + '.jpg'
-        self.image = models.ImageField(io.BytesIO(bytes(self.drawing_data)), name=name)
+        self.image = models.ImageField(io.BytesIO(bytes(self.drawing_data)), name=name, upload_to=str(settings.MEDIA_ROOT))
 
 
     id = models.IntegerField(primary_key=True)
@@ -32,7 +32,7 @@ class Profiles(models.Model):
     drawing_data = models.BinaryField(null=True, editable=True)
 
     def image_tag(self):
-        return mark_safe('<img src="/directory/%s" width="150" height="150" />' % (self.image))
+        return mark_safe('<img src="%s/%s" width="150" height="150" />' % (str(settings.MEDIA_ROOT),self.image))
 
     image_tag.short_description = 'Image'
 

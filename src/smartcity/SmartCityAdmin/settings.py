@@ -121,7 +121,17 @@ LOGGING = {
         }
     },
     'loggers': {
-        'faces': {
+        'django': {
+            'handlers': ['null'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'faces.models': {
             'level': 'DEBUG',
             'handlers': ['console'],
         },

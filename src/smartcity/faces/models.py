@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.utils.html import mark_safe
+import io
 import logging
 logger = logging.getLogger(__name__)
 logger.info(__name__)
@@ -21,27 +22,13 @@ class Profiles(models.Model):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.image_tag()
+        name = '{id}'.format(id=self.employee_id) + '.jpg'
+        self.image = models.ImageField(io.BytesIO(bytes(self.drawing_data)), name=name)
 
     id = models.IntegerField(primary_key=True)
     employee_id = models.IntegerField(unique=True)
     full_name = models.TextField()
     drawing_data = models.BinaryField(null=True, editable=True)
-
-    def image_tag(self):
-        if self.drawing_data != None:
-            data = bytes(self.drawing_data)
-            name = '{id}'.format(id=self.employee_id) + '.jpg'
-            filename = str(settings.MEDIA_ROOT) + name
-            url = str(settings.MEDIA_URL) + name
-            logger.info(filename)
-            with open(filename, 'wb') as f:
-                f.write(data)
-                logger.info('File %s is writen' % filename)
-            return mark_safe('<img src="%s" width="150" height="150" />' % (filename))
-        return mark_safe('<div> %s </div>'%'No image')
-
-    image_tag.short_description = 'Image'
 
     class Meta:
         verbose_name = _('profiles')

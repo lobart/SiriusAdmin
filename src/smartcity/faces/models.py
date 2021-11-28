@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from django.conf import settings
 
 class Cameras(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -19,6 +19,18 @@ class Profiles(models.Model):
     employee_id = models.IntegerField(unique=True)
     full_name = models.TextField()
     drawing_data = models.BinaryField(null=True, editable=True)
+
+    def image_tag(self):
+        data = self.drawing_data.get_default()
+        name = '{id}'.format(id=self.employee_id) + '.jpg'
+        filename = settings.STATIC + name
+        with open(filename, 'wb') as f:
+            f.write(data)
+        from django.utils.html import escape
+        return u'<img src="%s" />' % escape(filename)
+
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
 
     class Meta:
         verbose_name = _('profiles')

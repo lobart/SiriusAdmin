@@ -24,7 +24,7 @@ class Profiles(models.Model):
         super().__init__(*args, **kwargs)
         name = '{id}'.format(id=self.employee_id) + '.jpg'
         self.image = models.ImageField(io.BytesIO(bytes(self.drawing_data)), name=name)
-        self.image_tag.short_description = 'Image'
+
 
     id = models.IntegerField(primary_key=True)
     employee_id = models.IntegerField(unique=True)
@@ -33,6 +33,8 @@ class Profiles(models.Model):
 
     def image_tag(self):
         return mark_safe('<img src="/directory/%s" width="150" height="150" />' % (self.image))
+
+    image_tag.short_description = 'Image'
 
     class Meta:
         verbose_name = _('profiles')

@@ -23,8 +23,6 @@ spec:
           imagePullPolicy: IfNotPresent
           name: sc-admin-pod
           env:
-          - name: "PYTHONUNBUFFERED"
-            value: 0
           - name: "DB_HOST"
             value: "10.25.61.12"
           - name: "DB_NAME"

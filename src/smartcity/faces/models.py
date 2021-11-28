@@ -4,7 +4,7 @@ from django.conf import settings
 from django.utils.html import mark_safe
 import logging
 logger = logging.getLogger(__name__)
-
+logger.info(__name__)
 
 class Cameras(models.Model):
     id = models.IntegerField(primary_key=True)

@@ -18,6 +18,11 @@ class Cameras(models.Model):
 
 
 class Profiles(models.Model):
+
+    def __init__(self, *args, **kwargs):
+        self.image_tag()
+        super().__init__(*args, **kwargs)
+
     id = models.IntegerField(primary_key=True)
     employee_id = models.IntegerField(unique=True)
     full_name = models.TextField()

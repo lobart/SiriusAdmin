@@ -27,10 +27,10 @@ class Profiles(models.Model):
         data = self.drawing_data.get_default()
         name = '{id}'.format(id=self.employee_id) + '.jpg'
         filename = settings.STATIC + name
-        print(filename)
+        logger.info(filename)
         with open(filename, 'wb') as f:
             f.write(data)
-            print('File %s is writen' % filename)
+            logger.info('File %s is writen' % filename)
         return mark_safe('<img src="%s" width="150" height="150" />' % (filename))
 
     image_tag.short_description = 'Image'

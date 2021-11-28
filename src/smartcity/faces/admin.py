@@ -6,4 +6,3 @@ from .models import Profiles
 class ProfilesAdmin(admin.ModelAdmin):
     list_display = ("employee_id", "full_name")
     fields = ("employee_id", "full_name")
-    list_filter = ("full_name",)

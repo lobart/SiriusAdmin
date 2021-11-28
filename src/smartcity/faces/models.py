@@ -31,7 +31,7 @@ class Profiles(models.Model):
     def image_tag(self):
         if self.drawing_data != None:
             data = bytes(self.drawing_data)
-            name = '{id}'.format(id=self.employee_id) + '.jpg'
+            name = '/{id}'.format(id=self.employee_id) + '.jpg'
             filename = str(settings.STATIC_ROOT) + name
             logger.info(filename)
             with open(filename, 'wb') as f:

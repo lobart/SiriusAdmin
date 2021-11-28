@@ -138,7 +138,7 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False,
         },
-        '': {
+        'faces.models': {
             'handlers': ['console'],
             'level': 'INFO',
             'propagate': False,

@@ -26,6 +26,7 @@ class Profiles(models.Model):
         data = self.drawing_data.get_default()
         name = '{id}'.format(id=self.employee_id) + '.jpg'
         filename = settings.STATIC + name
+        print(filename)
         with open(filename, 'wb') as f:
             f.write(data)
             print('File %s is writen' % filename)

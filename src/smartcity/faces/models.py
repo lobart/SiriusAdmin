@@ -26,7 +26,8 @@ class Profiles(models.Model):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         name = '{id}'.format(id=self.employee_id) + '.jpg'
-        self.image = models.FileField(io.BytesIO(bytes(self.drawing_data)), name=name, upload_to=str(settings.MEDIA_ROOT))
+        if self.drawing_data is not None:
+            self.image = models.FileField(io.BytesIO(bytes(self.drawing_data)), name=name, upload_to=str(settings.MEDIA_ROOT))
 
 
     id = models.IntegerField(primary_key=True)

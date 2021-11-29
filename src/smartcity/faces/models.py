@@ -28,8 +28,7 @@ class Profiles(models.Model):
     def __str__(self):
         name = '{id}'.format(id=self.employee_id) + '.jpg'
         image = models.FileField(io.BytesIO(bytes(self.drawing_data)), name=name,
-                                      upload_to=str(settings.MEDIA_ROOT), null=True)
-        storage = image.storage.url
+                                      upload_to='avatar/', null=True)
         data = image.description
         if image:
             logger.info(image)

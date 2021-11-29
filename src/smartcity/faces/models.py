@@ -2,6 +2,9 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.utils.html import mark_safe
+from django.utils.functional import cached_property
+from django.utils.html import format_html
+
 import io
 import logging
 logger = logging.getLogger(__name__)
@@ -31,10 +34,13 @@ class Profiles(models.Model):
     full_name = models.TextField()
     drawing_data = models.BinaryField(null=True, editable=True)
 
-    def image_tag(self):
-        return mark_safe('<img src="%s/%s" width="150" height="150" />' % (str(settings.MEDIA_ROOT),self.image))
-
-    image_tag.short_description = 'Image'
+    @cached_property
+    def display_image(self):
+        html = '<img src="{img}">'
+        if self.image:
+            return format_html(html, img=self.image.url)
+        return format_html('<strong>There is no image for this entry.<strong>')
+    display_image.short_description = 'Display image'
 
     class Meta:
         verbose_name = _('profiles')

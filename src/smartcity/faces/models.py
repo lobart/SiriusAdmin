@@ -30,6 +30,7 @@ class Profiles(models.Model):
         image = models.FileField(io.BytesIO(bytes(self.drawing_data)), name=name,
                                       upload_to=str(settings.MEDIA_ROOT), null=True)
         if image:
+            logger.info(image)
             return "Image url is %s" % image.url
         return "Not image url"
 

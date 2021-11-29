@@ -1,9 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
-from django.utils.html import mark_safe
-from django.utils.functional import cached_property
-from django.utils.html import format_html
 
 import io
 import logging

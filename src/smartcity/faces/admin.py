@@ -11,8 +11,7 @@ def create_image_message(image_bytes, name):
 @admin.register(Profiles)
 class ProfilesAdmin(admin.ModelAdmin):
     list_display = ("employee_id", "full_name","drawing_data")
-    fields = ("employee_id", "full_name", 'image')
-    readonly_fields = ['image']
+    fields = ("employee_id", "full_name")
 
     def render_change_form(self, request, context, *args, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -38,6 +38,7 @@ class Profiles(models.Model):
     @cached_property
     def display_image(self):
         html = '<img src="{img}">'
+        logger.info(self.image)
         if self.image:
             return format_html(html, img=self.image.url)
         return format_html('<strong>There is no image for this entry.<strong>')

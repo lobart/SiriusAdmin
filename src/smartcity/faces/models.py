@@ -24,17 +24,7 @@ class Profiles(models.Model):
     employee_id = models.IntegerField(unique=True)
     full_name = models.TextField()
     drawing_data = models.BinaryField(null=True, editable=True)
-
-    def __str__(self):
-        name = '{id}'.format(id=self.employee_id) + '.jpg'
-        image = models.ImageField(io.BytesIO(bytes(self.drawing_data)), name=name,
-                                      upload_to='avatar', null=True)
-        data = image.description
-        if image:
-            logger.info(image)
-            return "Image url is %s" % image.url
-        return "Not image url"
-
+    image = models.ImageField(upload_to='faces')
 
     class Meta:
         verbose_name = _('profiles')

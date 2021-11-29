@@ -18,6 +18,10 @@ spec:
       labels:
         app: admin
     spec:
+      volumes:
+        - name: faces-storage
+          persistentVolumeClaim:
+            claimName: faces-claim
       containers:
         - image: siriusadmin_web # 4
           imagePullPolicy: IfNotPresent
@@ -37,7 +41,7 @@ spec:
             - containerPort: 8000
           volumeMounts:
             - mountPath: "/profiles"
-              name: faces-volume
+              name: faces-storage
 ---
 apiVersion: v1
 kind: Service

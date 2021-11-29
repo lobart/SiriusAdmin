@@ -12,3 +12,15 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: "/home/kuber/profiles"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: faces-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi

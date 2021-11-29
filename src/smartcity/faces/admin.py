@@ -14,7 +14,7 @@ class ProfilesAdmin(admin.ModelAdmin):
     fields = ("employee_id", "full_name")
 
     def render_change_form(self, request, context, *args, **kwargs):
-        context['image'] = create_image_message(context['drawing_data'], context['employee_id'] + '.jpg')
+        context['image'] = create_image_message(obj.drawing_data, obj.employee_id + '.jpg')
         return super(ProfilesAdmin, self).render_change_form(request, context, args, kwargs)
 
 

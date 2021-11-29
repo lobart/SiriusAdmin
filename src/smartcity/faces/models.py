@@ -23,17 +23,14 @@ class Cameras(models.Model):
 
 class Profiles(models.Model):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        name = '{id}'.format(id=self.employee_id) + '.jpg'
-        if self.drawing_data is not None:
-            self.image = models.FileField(io.BytesIO(bytes(self.drawing_data)), name=name, upload_to=str(settings.MEDIA_ROOT))
-
-
     id = models.IntegerField(primary_key=True)
     employee_id = models.IntegerField(unique=True)
     full_name = models.TextField()
     drawing_data = models.BinaryField(null=True, editable=True)
+    name = '{id}'.format(id=employee_id) + '.jpg'
+    image = models.FileField(io.BytesIO(bytes(drawing_data)), name=name,
+                                      upload_to=str(settings.MEDIA_ROOT), null=True)
+
 
     @cached_property
     def display_image(self):

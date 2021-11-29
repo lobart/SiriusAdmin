@@ -24,7 +24,6 @@ class Profiles(models.Model):
     employee_id = models.IntegerField(unique=True)
     full_name = models.TextField()
     drawing_data = models.BinaryField(null=True, editable=True)
-    image = models.ImageField(upload_to='faces')
 
     class Meta:
         verbose_name = _('profiles')

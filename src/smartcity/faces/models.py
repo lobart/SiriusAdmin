@@ -24,6 +24,12 @@ class Profiles(models.Model):
     employee_id = models.IntegerField(unique=True)
     full_name = models.TextField()
     drawing_data = models.BinaryField(null=True, editable=True)
+    photo = models.ImageField(upload_to='photos/%s' % employee_id, blank=True)
+
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
 
     class Meta:
         verbose_name = _('profiles')

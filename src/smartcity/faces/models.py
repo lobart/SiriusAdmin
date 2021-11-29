@@ -28,15 +28,13 @@ class Profiles(models.Model):
     full_name = models.TextField()
     drawing_data = models.BinaryField(null=True, editable=True)
 
-
-    @cached_property
     def display_image(self):
         name = '{id}'.format(id=self.employee_id) + '.jpg'
         image = models.FileField(io.BytesIO(bytes(self.drawing_data)), name=name,
                                       upload_to=str(settings.MEDIA_ROOT), null=True)
         html = '<img src="{img}">'
         logger.info("Image url is %s" % image.url)
-        logger.error("Image url is %s" % image.url)
+
         if image:
             return format_html(html, img=image.url)
         return format_html('<strong>There is no image for this entry.<strong>')

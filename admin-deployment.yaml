@@ -35,6 +35,9 @@ spec:
             value: "./temp"
           ports:
             - containerPort: 8000
+          volumeMounts:
+            - mountPath: "/profiles"
+              name: faces-volume
 ---
 apiVersion: v1
 kind: Service

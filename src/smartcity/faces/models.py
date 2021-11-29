@@ -27,17 +27,17 @@ class Profiles(models.Model):
     employee_id = models.IntegerField(unique=True)
     full_name = models.TextField()
     drawing_data = models.BinaryField(null=True, editable=True)
-    name = '{id}'.format(id=employee_id) + '.jpg'
-    image = models.FileField(io.BytesIO(bytes(drawing_data)), name=name,
-                                      upload_to=str(settings.MEDIA_ROOT), null=True)
 
 
     @cached_property
     def display_image(self):
+        name = '{id}'.format(id=self.employee_id) + '.jpg'
+        image = models.FileField(io.BytesIO(bytes(self.drawing_data)), name=name,
+                                      upload_to=str(settings.MEDIA_ROOT), null=True)
         html = '<img src="{img}">'
-        logger.info(self.image)
-        if self.image:
-            return format_html(html, img=self.image.url)
+        logger.info(image)
+        if image:
+            return format_html(html, img=image.url)
         return format_html('<strong>There is no image for this entry.<strong>')
     display_image.short_description = 'Display image'
 

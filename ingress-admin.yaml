@@ -15,18 +15,26 @@ spec:
      http:
         paths:
           - pathType: Prefix
-            path: /admin
-            backend:
-              service:
-                name: sc-admin-service
-                port: 
-                  number: 8000
-          - pathType: Prefix
-            path: /
+            path: /map
             backend:
               service:
                 name: frontend-service
                 port:
-                  number: 30005
+                  number: 30001
+          - pathType: Prefix
+            path: /admin/
+            backend:
+              service:
+                name: sc-admin-np
+                port: 
+                  number: 8000
+          - pathType: Prefix
+            path: /static/admin/
+            backend:
+              service:
+                name: sc-admin-np
+                port:
+                  number: 8000
+               
 
 

@@ -23,13 +23,14 @@ class Profiles(models.Model):
     id = models.IntegerField(primary_key=True)
     employee_id = models.IntegerField(unique=True)
     full_name = models.TextField()
-    drawing_data = models.BinaryField(null=True, editable=True)
-    photo = models.ImageField(upload_to='photos/%s' % employee_id, blank=True)
+    #drawing_data = models.BinaryField(null=True, editable=True)
+    #image = models.ImageField()
 
-    @property
-    def photo_url(self):
-        if self.photo and hasattr(self.photo, 'url'):
-            return self.photo.url
+    def image_tag(self):
+        from django.utils.html import escape
+        return u'<img src="%s" />' % escape(str(settings['FACES_ROOT']) + str(self.employee_id) + '/badge_photo.jpg')
+
+    image_tag.short_description = 'Image'
 
     class Meta:
         verbose_name = _('profiles')

@@ -10,7 +10,7 @@ def create_image_message(image_bytes, name):
 
 @admin.register(Profiles)
 class ProfilesAdmin(admin.ModelAdmin):
-    list_display = ("employee_id", "full_name","drawing_data")
+    list_display = ("employee_id", "full_name")
     fields = ("employee_id", "full_name")
 
 
